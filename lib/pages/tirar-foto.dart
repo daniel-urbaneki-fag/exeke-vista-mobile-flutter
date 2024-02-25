@@ -3,14 +3,14 @@ import 'package:camera_camera/camera_camera.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 
-class TakePicture extends StatefulWidget {
-  const TakePicture({super.key});
+class TirarFoto extends StatefulWidget {
+  const TirarFoto({super.key});
 
   @override
-  TakePictureState createState() => TakePictureState();
+  TirarFotoState createState() => TirarFotoState();
 }
 
-class TakePictureState extends State<TakePicture> {
+class TirarFotoState extends State<TirarFoto> {
   final photos = <File>[];
 
   void openCamera() {

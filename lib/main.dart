@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:exekevistaapp/pages/home.dart';
+import 'package:exekevistaapp/app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Exeke Vista',
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      home: App(),
     );
   }
 }

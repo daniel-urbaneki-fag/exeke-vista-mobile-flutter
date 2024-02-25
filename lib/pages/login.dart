@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -8,6 +10,36 @@ class Login extends StatefulWidget {
 }
 
 class LoginState extends State<Login> {
+  TextEditingController _usuario = TextEditingController();
+  TextEditingController _senha = TextEditingController();
+
+  void _enviarInformacoes() async {
+    String inputTextUsuario = _usuario.text;
+    String inputTextSenha = _senha.text;
+
+    String apiUrl = 'http://192.168.0.90:8080/login';
+
+    try {
+      final response = await http.post(
+        Uri.parse(apiUrl),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({
+          'login': {'usuario': inputTextUsuario, 'senha': inputTextSenha}
+        }),
+      );
+
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        print('Dados enviados com sucesso! ${data}');
+      } else {
+        print('Erro ao enviar dados. Código de status: ${response.statusCode}');
+        print('Message: ${response.body}');
+      }
+    } catch (error) {
+      print('Erro ao enviar dados: $error');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,7 +63,7 @@ class LoginState extends State<Login> {
                 padding: EdgeInsets.all(30),
                 child: Column(
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(bottom: 30),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,7 +75,7 @@ class LoginState extends State<Login> {
                                   color: Color.fromRGBO(255, 255, 255, 1)),
                             ),
                             TextField(
-                              obscureText: true,
+                              controller: _usuario,
                               decoration: InputDecoration(
                                 fillColor: Color.fromRGBO(255, 251, 214, 1),
                                 filled: true,
@@ -52,7 +84,7 @@ class LoginState extends State<Login> {
                             ),
                           ]),
                     ),
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.only(bottom: 20),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,6 +96,7 @@ class LoginState extends State<Login> {
                                   color: Color.fromRGBO(255, 255, 255, 1)),
                             ),
                             TextField(
+                              controller: _senha,
                               obscureText: true,
                               decoration: InputDecoration(
                                 fillColor: Color.fromRGBO(255, 251, 214, 1),
@@ -103,7 +136,7 @@ class LoginState extends State<Login> {
                                   fontSize: 18,
                                   color: Color.fromRGBO(255, 255, 255, 1)),
                             ),
-                            onPressed: () {},
+                            onPressed: _enviarInformacoes,
                           ),
                         )),
                   ],
