@@ -7,8 +7,7 @@ class CustomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(20),
+    return Positioned(
       child: Container(
         height: 80,
         decoration: const BoxDecoration(
