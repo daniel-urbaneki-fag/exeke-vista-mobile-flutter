@@ -13,12 +13,12 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(backgroundColor: color, elevation: 0),
           child: Text.rich(
             TextSpan(text: nameLabelButton),
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, color: Color.fromRGBO(255, 255, 255, 1)),
           ),
           onPressed: () {

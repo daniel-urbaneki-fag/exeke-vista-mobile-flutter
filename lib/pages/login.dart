@@ -10,8 +10,8 @@ class Login extends StatefulWidget {
 }
 
 class LoginState extends State<Login> {
-  TextEditingController _usuario = TextEditingController();
-  TextEditingController _senha = TextEditingController();
+  final TextEditingController _usuario = TextEditingController();
+  final TextEditingController _senha = TextEditingController();
 
   void _enviarInformacoes() async {
     String inputTextUsuario = _usuario.text;
@@ -30,7 +30,7 @@ class LoginState extends State<Login> {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
-        print('Dados enviados com sucesso! ${data}');
+        print('Dados enviados com sucesso! $data');
       } else {
         print('Erro ao enviar dados. Código de status: ${response.statusCode}');
         print('Message: ${response.body}');
@@ -44,7 +44,7 @@ class LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color.fromRGBO(43, 55, 63, 1),
+      backgroundColor: const Color.fromRGBO(43, 55, 63, 1),
       body: SingleChildScrollView(
         child: Column(children: [
           const Padding(
@@ -60,15 +60,15 @@ class LoginState extends State<Login> {
                   color: Color.fromRGBO(196, 196, 196, 0.289),
                   borderRadius: BorderRadius.all(Radius.circular(10))),
               child: Padding(
-                padding: EdgeInsets.all(30),
+                padding: const EdgeInsets.all(30),
                 child: Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(bottom: 30),
+                      padding: const EdgeInsets.only(bottom: 30),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text.rich(
+                            const Text.rich(
                               TextSpan(text: "LOGIN"),
                               style: TextStyle(
                                   fontSize: 18,
@@ -76,7 +76,7 @@ class LoginState extends State<Login> {
                             ),
                             TextField(
                               controller: _usuario,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 fillColor: Color.fromRGBO(255, 251, 214, 1),
                                 filled: true,
                                 border: OutlineInputBorder(),
@@ -85,11 +85,11 @@ class LoginState extends State<Login> {
                           ]),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(bottom: 20),
+                      padding: const EdgeInsets.only(bottom: 20),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text.rich(
+                            const Text.rich(
                               TextSpan(text: "SENHA"),
                               style: TextStyle(
                                   fontSize: 18,
@@ -98,7 +98,7 @@ class LoginState extends State<Login> {
                             TextField(
                               controller: _senha,
                               obscureText: true,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                 fillColor: Color.fromRGBO(255, 251, 214, 1),
                                 filled: true,
                                 border: OutlineInputBorder(),
@@ -107,7 +107,7 @@ class LoginState extends State<Login> {
                           ]),
                     ),
                     Padding(
-                        padding: EdgeInsets.only(bottom: 20),
+                        padding: const EdgeInsets.only(bottom: 20),
                         child: Container(
                           alignment: Alignment.bottomRight,
                           child: ElevatedButton(
@@ -124,19 +124,19 @@ class LoginState extends State<Login> {
                           ),
                         )),
                     Padding(
-                        padding: EdgeInsets.only(),
+                        padding: const EdgeInsets.only(),
                         child: Container(
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     const Color.fromRGBO(242, 106, 53, 1)),
+                            onPressed: _enviarInformacoes,
                             child: const Text.rich(
                               TextSpan(text: "LOGAR"),
                               style: TextStyle(
                                   fontSize: 18,
                                   color: Color.fromRGBO(255, 255, 255, 1)),
                             ),
-                            onPressed: _enviarInformacoes,
                           ),
                         )),
                   ],

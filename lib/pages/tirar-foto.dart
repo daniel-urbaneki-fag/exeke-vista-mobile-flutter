@@ -33,11 +33,11 @@ class TirarFotoState extends State<TirarFoto> {
       backgroundColor: Colors.black,
       body: GridView.builder(
         gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
         itemCount: photos.length,
         itemBuilder: (_, index) => Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(
+          child: SizedBox(
             width: size.width,
             child: kIsWeb
                 ? Image.network(photos[index].path)
@@ -50,7 +50,7 @@ class TirarFotoState extends State<TirarFoto> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: openCamera,
-        child: Icon(Icons.camera_alt),
+        child: const Icon(Icons.camera_alt),
       ),
     );
   }
