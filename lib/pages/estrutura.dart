@@ -1,3 +1,5 @@
+import 'package:exekevistaapp/components/CustomButton.dart';
+import 'package:exekevistaapp/components/CustomTextLabelInput.dart';
 import 'package:flutter/material.dart';
 import 'package:exekevistaapp/components/CustomNavBar.dart';
 import 'package:exekevistaapp/pages/tirar-foto.dart';
@@ -12,7 +14,11 @@ class Estrutura extends StatefulWidget {
 }
 
 class EstruturaState extends State<Estrutura> {
-  late String _nameEstruct = "Teste";
+  late String _nameEstruct;
+  late bool _isVisible = false;
+  late bool _isVisibleTes = false;
+  late bool _isVisibleTer = false;
+  late bool _isVisibleCom = false;
 
   @override
   void initState() {
@@ -28,77 +34,179 @@ class EstruturaState extends State<Estrutura> {
         appBar: CustomNavBar(currentPage: _nameEstruct),
         body: SingleChildScrollView(
           child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text.rich(
-                    TextSpan(text: "Dados da estrutura"),
-                    style: TextStyle(
-                        fontSize: 20, color: Color.fromRGBO(255, 255, 255, 1)),
+                  Column(
+                    children: [
+                      CustomButton(
+                          nameLabelButton: "Informações Iniciais",
+                          navigationFunction: (context) {
+                            setState(() {
+                              _isVisible = !_isVisible;
+                            });
+                          }),
+                      Visibility(
+                          visible: !_isVisible,
+                          child: const Column(
+                            children: [
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Números de módulos"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "idade aparente"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Tipo de telha"),
+                                ],
+                              ),
+                            ],
+                          ))
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10, top: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text.rich(
-                          TextSpan(text: "Número de módulos"),
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Color.fromRGBO(255, 255, 255, 1)),
-                        ),
-                        TextField(
-                          style: TextStyle(fontSize: 16),
-                          decoration: InputDecoration(
-                            fillColor: Color.fromRGBO(255, 251, 214, 1),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                        ),
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      CustomButton(
+                          nameLabelButton: "Informações sobre tesouras",
+                          navigationFunction: (context) {
+                            setState(() {
+                              _isVisibleTes = !_isVisibleTes;
+                            });
+                          }),
+                      Visibility(
+                          visible: !_isVisibleTes,
+                          child: const Column(
+                            children: [
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(nameLabel: "Vão livre"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Altura da tesoura"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Altura do perfil"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Largura do perfil"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Espessura do perfil"),
+                                ],
+                              ),
+                            ],
+                          ))
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(bottom: 10, top: 10),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text.rich(
-                          TextSpan(text: "Idade aparente"),
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Color.fromRGBO(255, 255, 255, 1)),
-                        ),
-                        TextField(
-                          style: TextStyle(fontSize: 16),
-                          decoration: InputDecoration(
-                            fillColor: Color.fromRGBO(255, 251, 214, 1),
-                            filled: true,
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(10))),
-                          ),
-                        ),
-                      ],
-                    ),
+                  Column(
+                    children: [
+                      CustomButton(
+                          nameLabelButton: "Informações sobre terças",
+                          navigationFunction: (context) {
+                            setState(() {
+                              _isVisibleTer = !_isVisibleTer;
+                            });
+                          }),
+                      Visibility(
+                          visible: !_isVisibleTer,
+                          child: const Column(
+                            children: [
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Distâncias das terças"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Altura das terças"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Largura do perfil"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Espessura do perfil"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Perfil enrijecido"),
+                                ],
+                              ),
+                            ],
+                          ))
+                    ],
                   ),
-                  ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color.fromRGBO(196, 196, 196, 0.289),
-                        elevation: 0),
-                    child: const Text.rich(
-                      TextSpan(text: "Tirar Foto"),
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Color.fromRGBO(255, 255, 255, 1)),
-                    ),
-                    onPressed: () {
+                  Column(
+                    children: [
+                      CustomButton(
+                          nameLabelButton: "Informações complementares",
+                          navigationFunction: (context) {
+                            setState(() {
+                              _isVisibleCom = !_isVisibleCom;
+                            });
+                          }),
+                      Visibility(
+                          visible: !_isVisibleCom,
+                          child: const Column(
+                            children: [
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Distâncias entre pilares"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Contraventamento"),
+                                ],
+                              ),
+                              Row(
+                                children: <CustomTextLabelInput>[
+                                  CustomTextLabelInput(
+                                      nameLabel: "Agulhamento"),
+                                ],
+                              ),
+                            ],
+                          ))
+                    ],
+                  ),
+                  CustomButton(
+                    nameLabelButton: "Capturar Imagens",
+                    color: const Color.fromRGBO(242, 106, 53, 1),
+                    navigationFunction: (context) {
                       Navigator.push(
                           context,
                           MaterialPageRoute(

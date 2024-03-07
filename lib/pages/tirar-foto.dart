@@ -30,7 +30,7 @@ class TirarFotoState extends State<TirarFoto> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromRGBO(43, 55, 63, 1),
       body: GridView.builder(
         gridDelegate:
             const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),

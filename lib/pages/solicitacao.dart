@@ -41,31 +41,31 @@ class SolicitacaoState extends State<Solicitacao> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      children: [
-                        TextLabelInput(nameLabel: "Nome do cliente"),
+                      children: <CustomTextLabelInput>[
+                        CustomTextLabelInput(nameLabel: "Nome do cliente"),
                       ],
                     ),
                     Row(
-                      children: [
-                        TextLabelInput(nameLabel: "Telefone"),
-                        TextLabelInput(nameLabel: "Cep"),
+                      children: <CustomTextLabelInput>[
+                        CustomTextLabelInput(nameLabel: "Telefone"),
+                        CustomTextLabelInput(nameLabel: "Cep"),
                       ],
                     ),
                     Row(
-                      children: [
-                        TextLabelInput(nameLabel: "Endereço"),
+                      children: <CustomTextLabelInput>[
+                        CustomTextLabelInput(nameLabel: "Endereço"),
                       ],
                     ),
                     Row(
-                      children: [
-                        TextLabelInput(nameLabel: "Número"),
-                        TextLabelInput(nameLabel: "Complemento"),
+                      children: <CustomTextLabelInput>[
+                        CustomTextLabelInput(nameLabel: "Número"),
+                        CustomTextLabelInput(nameLabel: "Complemento"),
                       ],
                     ),
                     Row(
-                      children: [
-                        TextLabelInput(nameLabel: "Bairro"),
-                        TextLabelInput(nameLabel: "Cidade"),
+                      children: <CustomTextLabelInput>[
+                        CustomTextLabelInput(nameLabel: "Bairro"),
+                        CustomTextLabelInput(nameLabel: "Cidade"),
                       ],
                     ),
                   ],

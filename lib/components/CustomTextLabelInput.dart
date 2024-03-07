@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-class TextLabelInput extends StatelessWidget {
-  const TextLabelInput({Key? key, required this.nameLabel}) : super(key: key);
+class CustomTextLabelInput extends StatelessWidget {
+  const CustomTextLabelInput({Key? key, required this.nameLabel})
+      : super(key: key);
   final String nameLabel;
 
   @override

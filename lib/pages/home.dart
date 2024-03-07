@@ -26,7 +26,7 @@ class HomeState extends State<Home> {
               SingleChildScrollView(
                 child: Center(
                     child: Padding(
-                        padding: const EdgeInsets.only(top: 0),
+                        padding: const EdgeInsets.only(top: 20),
                         child: Column(
                           children: [
                             CustomButton(
