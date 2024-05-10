@@ -41,7 +41,7 @@ class HomeState extends State<Home> {
                               },
                             ),
                             CustomButton(
-                              nameLabelButton: "Solicitações",
+                              nameLabelButton: "Solicitaçõesbb",
                               navigationFunction: (context) {
                                 Navigator.push(
                                   context,
