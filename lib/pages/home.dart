@@ -2,6 +2,7 @@ import 'package:exekevistaapp/components/CustomButton.dart';
 import 'package:flutter/material.dart';
 import 'package:exekevistaapp/pages/solicitacao.dart';
 import 'package:exekevistaapp/pages/visualizar-solicitacoes.dart';
+import 'package:exekevistaapp/pages/status-solicitacao.dart';
 import 'package:exekevistaapp/components/CustomNavBar.dart';
 
 class Home extends StatefulWidget {
@@ -41,13 +42,24 @@ class HomeState extends State<Home> {
                               },
                             ),
                             CustomButton(
-                              nameLabelButton: "Solicitaçõesbb",
+                              nameLabelButton: "Editar Solicitação",
                               navigationFunction: (context) {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
                                           const VisualizarSolicitacoes()),
+                                );
+                              },
+                            ),
+                            CustomButton(
+                              nameLabelButton: "Status da Solicitação",
+                              navigationFunction: (context) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const StatusSolicitacao()),
                                 );
                               },
                             ),

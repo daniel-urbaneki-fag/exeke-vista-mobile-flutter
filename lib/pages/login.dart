@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:exekevistaapp/pages/home.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -130,7 +131,13 @@ class LoginState extends State<Login> {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     const Color.fromRGBO(242, 106, 53, 1)),
-                            onPressed: _enviarInformacoes,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Home()),
+                              );
+                            },
                             child: const Text.rich(
                               TextSpan(text: "LOGAR"),
                               style: TextStyle(
@@ -138,7 +145,8 @@ class LoginState extends State<Login> {
                                   color: Color.fromRGBO(255, 255, 255, 1)),
                             ),
                           ),
-                        )),
+                        ),
+                    ),
                   ],
                 ),
               ),
