@@ -10,17 +10,17 @@ class TextLabelInput extends StatelessWidget {
         flex: 2,
         child: Container(
             child: Padding(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Padding(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Text.rich(
                   TextSpan(text: nameLabel),
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 16, color: Color.fromRGBO(255, 255, 255, 1)),
                 )),
-            TextField(
+            const TextField(
               style: TextStyle(fontSize: 16),
               decoration: InputDecoration(
                 fillColor: Color.fromRGBO(255, 251, 214, 1),
@@ -29,7 +29,7 @@ class TextLabelInput extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10))),
               ),
             ),
-          ]),
-        )));
+          ],),
+        ),),);
   }
 }
