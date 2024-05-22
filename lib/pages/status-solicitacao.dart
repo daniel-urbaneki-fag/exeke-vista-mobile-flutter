@@ -5,6 +5,8 @@ import 'package:exekevistaapp/pages/relatorio-laudo.dart';
 //import 'package:exekevistaapp/pages/home.dart';
 import 'package:exekevistaapp/components/CustomTextLabelInput.dart';
 
+import 'home.dart';
+
 class StatusSolicitacao extends StatefulWidget {
   const StatusSolicitacao({super.key});
 
@@ -59,19 +61,15 @@ class StatusSolicitacaoState extends State<StatusSolicitacao> {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10),
-                child: Container(
-                  width: double.infinity,
-                  decoration: const BoxDecoration(
-                      color: Color.fromRGBO(196, 196, 196, 0.289),
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Row(
+                  Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Container(
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                          //color: Color.fromRGBO(196, 196, 196, 0.289),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CustomButton(
                             nameLabelButton: "Visualizar Status",
@@ -80,18 +78,27 @@ class StatusSolicitacaoState extends State<StatusSolicitacao> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const Relatorio(
-                                        nameEstruct: "Status da Solicitação")),
+                                    builder: (context) =>
+                                    const Relatorio(nameEstruct: "Status da Solicitação")),
                               );
+                            },
+                          ),
+                          CustomButton(
+                            nameLabelButton: "Voltar",
+                            color: const Color.fromRGBO(242, 106, 53, 1),
+                            navigationFunction: (context) {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Home()));
                             },
                           ),
                         ],
                       ),
-                    ],
-                  ),
-                ),
-              )
-            ]),
+                    ),
+                  )
+
+                ]),
           )),
     );
   }

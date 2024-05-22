@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:exekevistaapp/components/CustomButton.dart';
 import 'package:exekevistaapp/components/CustomNavBar.dart';
 
+import 'status-solicitacao.dart';
+
 class Relatorio extends StatefulWidget {
   const Relatorio({super.key, required this.nameEstruct});
 
@@ -54,7 +56,7 @@ class RelatorioState extends State<Relatorio> {
                             Row(
                               children: [
                                 Text(
-                                  "001 | Bionova | Energia Solar Ltda | EM ANDAMENTO ",
+                                  "001 | Bionova | EM ANDAMENTO ",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -67,7 +69,7 @@ class RelatorioState extends State<Relatorio> {
                             Row(
                               children: [
                                 Text(
-                                  "002 | Solar | Sistema de Solar Ltda | CONCLUÍDO",
+                                  "002 | Solar | CONCLUÍDO",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -80,7 +82,7 @@ class RelatorioState extends State<Relatorio> {
                             Row(
                               children: [
                                 Text(
-                                  "003 | Energise | Energia Renovável Ltda | CONCLUÍDO",
+                                  "003 | Energise | EM ATRASO",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -92,6 +94,16 @@ class RelatorioState extends State<Relatorio> {
                           ],
                         ),
                       ),
+                    ),
+                    CustomButton(
+                      nameLabelButton: "Voltar",
+                      color: const Color.fromRGBO(242, 106, 53, 1),
+                      navigationFunction: (context) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const StatusSolicitacao()));
+                      },
                     ),
                   ],
                 ),

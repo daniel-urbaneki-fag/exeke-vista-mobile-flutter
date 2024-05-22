@@ -1,5 +1,6 @@
 import 'package:exekevistaapp/components/CustomButton.dart';
 import 'package:exekevistaapp/components/CustomTextLabelInput.dart';
+import 'package:exekevistaapp/pages/home.dart';
 import 'package:flutter/material.dart';
 import 'package:exekevistaapp/components/CustomNavBar.dart';
 import 'package:exekevistaapp/pages/tirar-foto.dart';
@@ -62,7 +63,7 @@ class EstruturaState extends State<Estrutura> {
                               Row(
                                 children: <CustomTextLabelInput>[
                                   CustomTextLabelInput(
-                                      nameLabel: "idade aparente"),
+                                      nameLabel: "Idade aparente"),
                                 ],
                               ),
                               Row(
@@ -211,6 +212,16 @@ class EstruturaState extends State<Estrutura> {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const TirarFoto()));
+                    },
+                  ),
+                  CustomButton(
+                    nameLabelButton: "Voltar",
+                    color: const Color.fromRGBO(242, 106, 53, 1),
+                    navigationFunction: (context) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Home()));
                     },
                   )
                 ],

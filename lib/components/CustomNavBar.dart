@@ -8,7 +8,7 @@ class CustomNavBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Container(
           decoration: const BoxDecoration(
               color: Color.fromRGBO(196, 196, 196, 0.289),
@@ -38,7 +38,7 @@ class CustomNavBar extends StatelessWidget implements PreferredSizeWidget {
                                   const Color.fromRGBO(196, 196, 196, 0.289),
                               elevation: 0),
                           child: const Text.rich(
-                            TextSpan(text: "Menu"),
+                            TextSpan(text: "---"),
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Color.fromRGBO(255, 255, 255, 1)),
