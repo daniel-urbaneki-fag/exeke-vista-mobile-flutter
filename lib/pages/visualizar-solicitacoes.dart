@@ -31,7 +31,20 @@ class VisualizarSolicitacoesState extends State<VisualizarSolicitacoes> {
                   children: [
                     Row(
                       children: <Widget>[
-                        CustomTextLabelInput(nameLabel: "Pesquisar Cliente"),
+                        Flexible(
+                          flex: 1,
+                          child: CustomTextLabelInput(nameLabel: "Pesquisar Cliente"),
+                        ),
+                        Center(
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.search,
+                              color: Color.fromRGBO(242, 106, 53, 1),
+                            ),
+                            iconSize: 40.0,
+                            onPressed: null,
+                          ),
+                        ),
                       ],
                     ),
                     Padding(
@@ -42,9 +55,13 @@ class VisualizarSolicitacoesState extends State<VisualizarSolicitacoes> {
                           Text.rich(
                             TextSpan(text: "Id     Cliente     Status"),
                             style: TextStyle(
-                              fontSize: 16,
+                              fontSize: 20,
                               color: Color.fromRGBO(255, 255, 255, 1),
                             ),
+                          ),
+                          Divider(
+                            color: Colors.white,
+                            thickness: 1,
                           ),
                           Text.rich(
                             TextSpan(text: "01     Bionova     EM ANDAMENTO"),
@@ -53,12 +70,20 @@ class VisualizarSolicitacoesState extends State<VisualizarSolicitacoes> {
                               color: Color.fromRGBO(255, 255, 255, 1),
                             ),
                           ),
+                          Divider(
+                            color: Colors.white,
+                            thickness: 1,
+                          ),
                           Text.rich(
                             TextSpan(text: "02     Solar     CONCLUÍDO"),
                             style: TextStyle(
                               fontSize: 16,
                               color: Color.fromRGBO(255, 255, 255, 1),
                             ),
+                          ),
+                          Divider(
+                            color: Colors.white,
+                            thickness: 1,
                           ),
                           Text.rich(
                             TextSpan(text: "03     Energise     EM ATRASO"),

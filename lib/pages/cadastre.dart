@@ -64,7 +64,7 @@ class CadastreState extends State<Cadastre> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 30),
+                      padding: const EdgeInsets.only(bottom: 20),
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -77,6 +77,7 @@ class CadastreState extends State<Cadastre> {
                                   color: Color.fromRGBO(255, 255, 255, 1)),
                             ),
                           ),
+                          const SizedBox(height: 20),
                           TextField(
                             controller: _usuario,
                             decoration: const InputDecoration(

@@ -126,24 +126,22 @@ class LoginState extends State<Login> {
                         )),
                     Padding(
                         padding: const EdgeInsets.only(),
-                        child: Container(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromRGBO(242, 106, 53, 1)),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const Home()),
-                              );
-                            },
-                            child: const Text.rich(
-                              TextSpan(text: "LOGAR"),
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Color.fromRGBO(255, 255, 255, 1)),
-                            ),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor:
+                                  const Color.fromRGBO(242, 106, 53, 1)),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Home()),
+                            );
+                          },
+                          child: const Text.rich(
+                            TextSpan(text: "LOGAR"),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: Color.fromRGBO(255, 255, 255, 1)),
                           ),
                         ),
                     ),
