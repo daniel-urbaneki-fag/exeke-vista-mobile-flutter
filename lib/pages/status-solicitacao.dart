@@ -43,17 +43,17 @@ class StatusSolicitacaoState extends State<StatusSolicitacao> {
                   children: [
                     Row(
                       children: <CustomTextLabelInput>[
-                        CustomTextLabelInput(nameLabel: "Nome do cliente"),
+                        // CustomTextLabelInput(nameLabel: "Nome do cliente"),
                       ],
                     ),
                     Row(
                       children: <CustomTextLabelInput>[
-                        CustomTextLabelInput(nameLabel: "Tipo de Estrutura"),
+                        // CustomTextLabelInput(nameLabel: "Tipo de Estrutura"),
                       ],
                     ),
                     Row(
                       children: <CustomTextLabelInput>[
-                        CustomTextLabelInput(nameLabel: "Situação da Análise"),
+                        // CustomTextLabelInput(nameLabel: "Situação da Análise"),
                       ],
                     ),
                   ],

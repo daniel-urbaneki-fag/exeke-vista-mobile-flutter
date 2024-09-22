@@ -32,7 +32,7 @@ class VisualizarSolicitacoesState extends State<VisualizarSolicitacoes> {
                   ),
                   Row(
                     children: <Widget>[
-                      CustomTextLabelInput(nameLabel: "Pesquisar Cliente"),
+                      // CustomTextLabelInput(nameLabel: "Pesquisar Cliente"),
                     ],
                   ),
                   Padding(
