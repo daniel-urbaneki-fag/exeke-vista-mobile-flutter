@@ -5,8 +5,6 @@ import 'package:exekevistaapp/pages/relatorio-laudo.dart';
 //import 'package:exekevistaapp/pages/home.dart';
 import 'package:exekevistaapp/components/CustomTextLabelInput.dart';
 
-import 'home.dart';
-
 class StatusSolicitacao extends StatefulWidget {
   const StatusSolicitacao({super.key});
 
@@ -45,31 +43,35 @@ class StatusSolicitacaoState extends State<StatusSolicitacao> {
                   children: [
                     Row(
                       children: <CustomTextLabelInput>[
-                        CustomTextLabelInput(nameLabel: "Nome do cliente"),
+                        // CustomTextLabelInput(nameLabel: "Nome do cliente"),
                       ],
                     ),
                     Row(
                       children: <CustomTextLabelInput>[
-                        CustomTextLabelInput(nameLabel: "Tipo de Estrutura"),
+                        // CustomTextLabelInput(nameLabel: "Tipo de Estrutura"),
                       ],
                     ),
                     Row(
                       children: <CustomTextLabelInput>[
-                        CustomTextLabelInput(nameLabel: "Situação da Análise"),
+                        // CustomTextLabelInput(nameLabel: "Situação da Análise"),
                       ],
                     ),
                   ],
                 ),
               ),
-                  Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: Container(
-                      width: double.infinity,
-                      decoration: const BoxDecoration(
-                          //color: Color.fromRGBO(196, 196, 196, 0.289),
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: Column(
+              Padding(
+                padding: const EdgeInsets.all(10),
+                child: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      color: Color.fromRGBO(196, 196, 196, 0.289),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           CustomButton(
                             nameLabelButton: "Visualizar Status",
@@ -78,27 +80,18 @@ class StatusSolicitacaoState extends State<StatusSolicitacao> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) =>
-                                    const Relatorio(nameEstruct: "Status da Solicitação")),
+                                    builder: (context) => const Relatorio(
+                                        nameEstruct: "Status da Solicitação")),
                               );
-                            },
-                          ),
-                          CustomButton(
-                            nameLabelButton: "Voltar",
-                            color: const Color.fromRGBO(242, 106, 53, 1),
-                            navigationFunction: (context) {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Home()));
                             },
                           ),
                         ],
                       ),
-                    ),
-                  )
-
-                ]),
+                    ],
+                  ),
+                ),
+              )
+            ]),
           )),
     );
   }

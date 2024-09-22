@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import '../config/api_routes.dart';
 import 'package:exekevistaapp/pages/home.dart';
+
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -15,10 +18,11 @@ class LoginState extends State<Login> {
   final TextEditingController _senha = TextEditingController();
 
   void _enviarInformacoes() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     String inputTextUsuario = _usuario.text;
     String inputTextSenha = _senha.text;
 
-    String apiUrl = 'http://192.168.0.90:8080/login';
+    String apiUrl = ApiRoutes.login;
 
     try {
       final response = await http.post(
@@ -31,6 +35,9 @@ class LoginState extends State<Login> {
 
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
+        await sharedPreferences.setString('token', data['token']);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const Home()));
         print('Dados enviados com sucesso! $data');
       } else {
         print('Erro ao enviar dados. Código de status: ${response.statusCode}');
@@ -126,25 +133,20 @@ class LoginState extends State<Login> {
                         )),
                     Padding(
                         padding: const EdgeInsets.only(),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromRGBO(242, 106, 53, 1)),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Home()),
-                            );
-                          },
-                          child: const Text.rich(
-                            TextSpan(text: "LOGAR"),
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: Color.fromRGBO(255, 255, 255, 1)),
+                        child: Container(
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromRGBO(242, 106, 53, 1)),
+                            onPressed: () => _enviarInformacoes(),
+                            child: const Text.rich(
+                              TextSpan(text: "LOGAR"),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Color.fromRGBO(255, 255, 255, 1)),
+                            ),
                           ),
-                        ),
-                    ),
+                        )),
                   ],
                 ),
               ),
