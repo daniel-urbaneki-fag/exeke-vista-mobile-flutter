@@ -5,7 +5,7 @@ class CustomButton extends StatelessWidget {
       {super.key,
       required this.nameLabelButton,
       required this.navigationFunction,
-      this.color = const Color.fromRGBO(196, 196, 196, 0.289)});
+      this.color = const Color.fromRGBO(241, 92, 43, 1.0), });
   final String nameLabelButton;
   final void Function(BuildContext) navigationFunction;
   final Color color;

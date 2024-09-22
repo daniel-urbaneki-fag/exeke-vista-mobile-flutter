@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 
 class CustomNavBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomNavBar({super.key, required this.currentPage, this.isHome = ""});
+  const CustomNavBar(
+      {super.key,
+        required this.currentPage,
+        this.isHome = ""});
   final String currentPage;
   final String isHome;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Container(
           decoration: const BoxDecoration(
               color: Color.fromRGBO(196, 196, 196, 0.289),
@@ -34,16 +37,16 @@ class CustomNavBar extends StatelessWidget implements PreferredSizeWidget {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromRGBO(196, 196, 196, 0.289),
-                              elevation: 0),
-                          child: const Text.rich(
-                            TextSpan(text: "Menu"),
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Color.fromRGBO(255, 255, 255, 1)),
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
                           ),
-                          onPressed: () {},
+                          child: const Icon(
+                            Icons.more_vert,
+                            size: 40,
+                            color: Color.fromRGBO(241, 92, 43, 1.0),
+                          ),
+                          onPressed: () {
+                          },
                         )
                       ],
                     )
@@ -68,7 +71,7 @@ class CustomNavBar extends StatelessWidget implements PreferredSizeWidget {
                               image:
                                   AssetImage('src/images/icone-exeke-png.png'),
                               height: 100),
-                        ]))),
+                        ],),),),
     );
   }
 
