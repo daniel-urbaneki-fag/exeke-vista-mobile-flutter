@@ -113,6 +113,7 @@ class SolicitacaoState extends State<Solicitacao> {
                   Row(
                     children: [
                       CustomTextLabelInput(
+                          valorPadrao: "João da silva",
                           nameLabel: "Nome do cliente",
                           controller: _nomeController),
                     ],
@@ -120,14 +121,19 @@ class SolicitacaoState extends State<Solicitacao> {
                   Row(
                     children: [
                       CustomTextLabelInput(
-                          nameLabel: "Email", controller: _emailController),
+                          valorPadrao: "joao_silva@hotmail.com",
+                          nameLabel: "Email",
+                          controller: _emailController),
                     ],
                   ),
                   Row(
                     children: [
                       CustomTextLabelInput(
-                          nameLabel: "Cpf", controller: _cpfController),
+                          valorPadrao: "10185376940",
+                          nameLabel: "Cpf",
+                          controller: _cpfController),
                       CustomTextLabelInput(
+                          valorPadrao: "45999789334",
                           nameLabel: "Telefone",
                           controller: _telefoneController),
                     ],
@@ -135,6 +141,7 @@ class SolicitacaoState extends State<Solicitacao> {
                   Row(
                     children: [
                       CustomTextLabelInput(
+                          valorPadrao: "Rua Teresina",
                           nameLabel: "Endereço",
                           controller: _enderecoController),
                     ],
@@ -142,24 +149,35 @@ class SolicitacaoState extends State<Solicitacao> {
                   Row(
                     children: [
                       CustomTextLabelInput(
-                          nameLabel: "Número", controller: _numeroController),
+                          valorPadrao: "398",
+                          nameLabel: "Número",
+                          controller: _numeroController),
                       CustomTextLabelInput(
-                          nameLabel: "Bairro", controller: _bairroController),
+                          valorPadrao: "Centro",
+                          nameLabel: "Bairro",
+                          controller: _bairroController),
                     ],
                   ),
                   Row(
                     children: [
                       CustomTextLabelInput(
-                          nameLabel: "Cidade", controller: _cidadeController),
+                          valorPadrao: "Cascavel",
+                          nameLabel: "Cidade",
+                          controller: _cidadeController),
                       CustomTextLabelInput(
-                          nameLabel: "Estado", controller: _estadoController),
+                          valorPadrao: "PR",
+                          nameLabel: "Estado",
+                          controller: _estadoController),
                     ],
                   ),
                   Row(
                     children: [
                       CustomTextLabelInput(
-                          nameLabel: "Cep", controller: _cepController),
+                          valorPadrao: "85836543",
+                          nameLabel: "Cep",
+                          controller: _cepController),
                       CustomTextLabelInput(
+                          valorPadrao: "",
                           nameLabel: "Complemento",
                           controller: _complementoController),
                     ],
