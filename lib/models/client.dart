@@ -27,17 +27,21 @@ class Cliente {
 
   Map<String, dynamic> toJson() {
     return {
-      'nome': nome,
-      'email': email,
-      'cpf': cpf,
-      'telefone': telefone,
-      'endereco': endereco,
-      'numero': numero,
-      'bairro': bairro,
-      'cidade': cidade,
-      'estado': estado,
-      'cep': cep,
-      'complemento': complemento,
+      'endereco': {
+        'logradouro': endereco,
+        'numero': numero,
+        'complemento': complemento,
+        'bairro': bairro,
+        'cep': cep,
+        'cidade': cidade,
+        'estado': estado,
+      },
+      'pessoa': {
+        'nome': nome,
+        'email': email,
+        'telefone': telefone,
+        'cpf': cpf,
+      }
     };
   }
 }

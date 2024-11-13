@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class CustomTextLabelInput extends StatefulWidget {
-  const CustomTextLabelInput({
-    Key? key,
-    required this.nameLabel,
-    required this.controller,
-  }) : super(key: key);
+  const CustomTextLabelInput(
+      {Key? key,
+      required this.nameLabel,
+      required this.controller,
+      required this.valorPadrao})
+      : super(key: key);
 
   final String nameLabel;
-  final TextEditingController controller; // Utilize o controlador passado
+  final String valorPadrao;
+  final TextEditingController controller;
 
   @override
   _CustomTextLabelInputState createState() => _CustomTextLabelInputState();
@@ -18,8 +20,7 @@ class _CustomTextLabelInputState extends State<CustomTextLabelInput> {
   @override
   void initState() {
     super.initState();
-    // Definir o valor padrão
-    widget.controller.text = "Valor padrão"; // Coloque o valor que você deseja
+    widget.controller.text = widget.valorPadrao;
   }
 
   @override
