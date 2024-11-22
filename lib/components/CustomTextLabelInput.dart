@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class CustomTextLabelInput extends StatefulWidget {
-  const CustomTextLabelInput(
-      {Key? key,
-      required this.nameLabel,
-      required this.controller,
-      required this.valorPadrao})
-      : super(key: key);
+  const CustomTextLabelInput({
+    Key? key,
+    required this.nameLabel,
+    required this.controller,
+    required this.valorPadrao,
+    this.isNumber =
+        false, // Adicionando a opção para controlar se será número ou string
+  }) : super(key: key);
 
   final String nameLabel;
   final String valorPadrao;
   final TextEditingController controller;
+  final bool isNumber; // Propriedade para verificar se o campo é numérico
 
   @override
   _CustomTextLabelInputState createState() => _CustomTextLabelInputState();
@@ -44,8 +48,17 @@ class _CustomTextLabelInputState extends State<CustomTextLabelInput> {
                 ),
               ),
               TextField(
-                controller: widget.controller, // Use o controlador passado
+                controller: widget.controller,
                 style: const TextStyle(fontSize: 16),
+                keyboardType: widget.isNumber
+                    ? TextInputType.numberWithOptions(decimal: true)
+                    : TextInputType.text, // Altera para número ou texto
+                inputFormatters: widget.isNumber
+                    ? [
+                        FilteringTextInputFormatter.allow(RegExp(
+                            r'[0-9.,]')), // Permite números e vírgula/ponto
+                      ]
+                    : [], // Não aplica filtro se não for número
                 decoration: const InputDecoration(
                   fillColor: Color.fromRGBO(255, 251, 214, 1),
                   filled: true,
@@ -54,8 +67,7 @@ class _CustomTextLabelInputState extends State<CustomTextLabelInput> {
                   ),
                 ),
                 onChanged: (text) {
-                  // Aqui você pode capturar o valor em tempo real
-                  // print("Valor digitado: $text");
+                  // Aqui você pode capturar o valor em tempo real, caso precise
                 },
               ),
             ],

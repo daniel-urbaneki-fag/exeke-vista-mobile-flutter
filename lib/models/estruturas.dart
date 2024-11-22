@@ -5,24 +5,21 @@ class EstruturaMetalica {
   String tipoTelha;
   String idadeAparente;
 
-  // Informações tesouras
   String vaoLivreTesoura;
   String alturaTesoura;
   String alturaPerfilTesoura;
   String larguraPerfilTesoura;
   String espessuraPerfilTesoura;
 
-  // Informações terças
   String distanciaTer;
   String alturaTer;
   String larguraPerfilTer;
   String espessuraPerfilTer;
   String perfilEnrijecidoTer;
 
-  // Informações complementares
   String distanciaPilaresComple;
-  String contraAvantamentoComple;
-  String agulhamentoComple;
+  bool contraAvantamentoComple;
+  bool agulhamentoComple;
 
   EstruturaMetalica({
     required this.tipoEstrutura,
@@ -48,29 +45,31 @@ class EstruturaMetalica {
   Map<String, dynamic> toJson() {
     return {
       'tipo_estrutura': {
-        'tipo_perfil_tes': espessuraPerfilTer,
-        'espess_perf_tes': espessuraPerfilTesoura,
-        'larg_perf_tes': larguraPerfilTesoura,
-        'alt_perf_tes': alturaPerfilTesoura,
-        'alt_tes': alturaTesoura,
-        'vao_livre_tes': vaoLivreTesoura,
+        'tipo_perfil_tes': _toFloat(espessuraPerfilTer),
+        'espess_perf_tes': _toFloat(espessuraPerfilTesoura),
+        'larg_perf_tes': _toFloat(larguraPerfilTesoura),
+        'alt_perf_tes': _toFloat(alturaPerfilTesoura),
+        'alt_tes': _toFloat(alturaTesoura),
+        'vao_livre_tes': _toFloat(vaoLivreTesoura),
         'contra_aventamento': contraAvantamentoComple,
         'agulhamento': agulhamentoComple,
-        'dis_pilares': distanciaPilaresComple,
-        'perf_enrijecido_ter': perfilEnrijecidoTer,
-        'larg_perf_ter': larguraPerfilTer,
-        'alt_perf_ter': alturaTer,
+        'dis_pilares': _toFloat(distanciaPilaresComple),
+        'perf_enrijecido_ter': _toFloat(perfilEnrijecidoTer),
+        'larg_perf_ter': _toFloat(larguraPerfilTer),
+        'alt_perf_ter': _toFloat(alturaTer),
       },
       'estrutura': {
         'tipo_estrutura': tipoEstrutura,
-        'area_cobertura': areaCobertura,
-        'numero_modulos': numeroModulos,
+        'area_cobertura': _toFloat(areaCobertura),
+        'numero_modulos': _toFloat(numeroModulos),
         'tipo_telha': tipoTelha,
         'idade_aparente': idadeAparente,
-        'dis_ter': distanciaTer,
+        'dis_ter': _toFloat(distanciaTer),
       },
     };
   }
+
+  double? _toFloat(String value) => double.tryParse(value.replaceAll(',', '.'));
 }
 
 class EstruturaMadeira {
@@ -80,19 +79,17 @@ class EstruturaMadeira {
   String tipoTelha;
   String idadeAparente;
 
-  // Informações tesouras
   String vaoLivreTesoura;
   String tipoCorteTesoura;
+  String alturaTesoura;
   String alturaCorteTesoura;
   String larguraCorteTesoura;
   String diametroTroncoTesoura;
 
-  // Informações terças
   String distanciaTer;
   String alturaCorteTer;
   String larguraCorteTer;
 
-  // Informações complementares
   String distanciaPilaresComple;
   String formaChumbamentoComple;
 
@@ -109,6 +106,7 @@ class EstruturaMadeira {
     required this.diametroTroncoTesoura,
     required this.distanciaTer,
     required this.alturaCorteTer,
+    required this.alturaTesoura,
     required this.larguraCorteTer,
     required this.distanciaPilaresComple,
     required this.formaChumbamentoComple,
@@ -117,26 +115,29 @@ class EstruturaMadeira {
   Map<String, dynamic> toJson() {
     return {
       'tipo_estrutura': {
+        'vao_livre_tes': _toFloat(vaoLivreTesoura),
         'tipo_corte_tes': tipoCorteTesoura,
-        'diametro_tronco_tes': diametroTroncoTesoura,
-        'larg_corte_tes': larguraCorteTesoura,
-        'alt_corte_tes': alturaCorteTesoura,
-        'vao_livre_tes': vaoLivreTesoura,
-        'alt_corte_ter': alturaCorteTer,
-        'larg_corte_ter': larguraCorteTer,
-        'dis_pilares': distanciaPilaresComple,
+        'alt_corte_tes': _toFloat(alturaCorteTesoura),
+        'alt_tes': _toFloat(alturaTesoura),
+        'larg_corte_tes': _toFloat(larguraCorteTesoura),
+        'diametro_tronco_tes': _toFloat(diametroTroncoTesoura),
+        'alt_corte_ter': _toFloat(alturaCorteTer),
+        'larg_corte_ter': _toFloat(larguraCorteTer),
+        'dis_pilares': _toFloat(distanciaPilaresComple),
         'forma_chumbamento': formaChumbamentoComple,
       },
       'estrutura': {
         'tipo_estrutura': tipoEstrutura,
-        'area_cobertura': areaCobertura,
-        'numero_modulos': numeroModulos,
+        'area_cobertura': _toFloat(areaCobertura),
+        'numero_modulos': _toFloat(numeroModulos),
         'tipo_telha': tipoTelha,
         'idade_aparente': idadeAparente,
-        'dis_ter': distanciaTer,
+        'dis_ter': _toFloat(distanciaTer),
       },
     };
   }
+
+  double? _toFloat(String value) => double.tryParse(value.replaceAll(',', '.'));
 }
 
 class EstruturaConcreto {
@@ -145,18 +146,16 @@ class EstruturaConcreto {
   String numeroModulos;
   String tipoTelha;
   String idadeAparente;
-  // Informações tesouras
+
   String vaoLivreTesoura;
   String tipoTravamentoTesoura;
 
-  // Informações terças
   String distanciaTer;
   String tipoTer;
 
-  // Informações complementares
-  String contraAventamentoComple;
-  String agulhamentoComple;
-  String tiranteCentralComple;
+  bool contraAventamentoComple;
+  bool agulhamentoComple;
+  bool tiranteCentralComple;
 
   EstruturaConcreto({
     required this.tipoEstrutura,
@@ -176,7 +175,7 @@ class EstruturaConcreto {
   Map<String, dynamic> toJson() {
     return {
       'tipo_estrutura': {
-        'vao_livre': vaoLivreTesoura,
+        'vao_livre': _toFloat(vaoLivreTesoura),
         'tipo_travamento': tipoTravamentoTesoura,
         'tipo_ter': tipoTer,
         'contra_aventamento': contraAventamentoComple,
@@ -185,12 +184,14 @@ class EstruturaConcreto {
       },
       'estrutura': {
         'tipo_estrutura': tipoEstrutura,
-        'area_cobertura': areaCobertura,
-        'numero_modulos': numeroModulos,
+        'area_cobertura': _toFloat(areaCobertura),
+        'numero_modulos': _toFloat(numeroModulos),
         'tipo_telha': tipoTelha,
         'idade_aparente': idadeAparente,
-        'dis_ter': distanciaTer,
+        'dis_ter': _toFloat(distanciaTer),
       },
     };
   }
+
+  double? _toFloat(String value) => double.tryParse(value.replaceAll(',', '.'));
 }

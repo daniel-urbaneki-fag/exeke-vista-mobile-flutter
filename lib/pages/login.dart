@@ -36,6 +36,7 @@ class LoginState extends State<Login> {
       if (response.statusCode == 200) {
         final data = json.decode(response.body);
         await sharedPreferences.setString('token', data['token']);
+        await sharedPreferences.setInt('userId', data['usuario']["id"]);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => const Home()));
         print('Dados enviados com sucesso! $data');

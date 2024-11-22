@@ -57,10 +57,8 @@ class EstruturaState extends State<Estrutura> {
   // Informações complementares
   final TextEditingController _disPilaresCompleMetalicaController =
       TextEditingController();
-  final TextEditingController _contraAvantamentoCompleMetalicaController =
-      TextEditingController();
-  final TextEditingController _agulhamentoCompleMetalicaController =
-      TextEditingController();
+  bool _contraAvantamentoCompleMetalicaController = false;
+  bool _agulhamentoCompleMetalicaController = false;
 
   // Estrutura Madeira
 
@@ -68,6 +66,8 @@ class EstruturaState extends State<Estrutura> {
   final TextEditingController _vaoLivreTesMadeiraController =
       TextEditingController();
   final TextEditingController _tipoCorteTesMadeiraController =
+      TextEditingController();
+  final TextEditingController _altTesMadeiraController =
       TextEditingController();
   final TextEditingController _altCorteTesMadeiraController =
       TextEditingController();
@@ -101,12 +101,9 @@ class EstruturaState extends State<Estrutura> {
   final TextEditingController _tipoTerConcretoController =
       TextEditingController();
   // Informações complementares
-  final TextEditingController _contraAventamentoCompleConcretoController =
-      TextEditingController();
-  final TextEditingController _agulhamentoCompleConcretoController =
-      TextEditingController();
-  final TextEditingController _tiranteCentralCompleConcretoController =
-      TextEditingController();
+  bool _contraAventamentoCompleConcretoController = false;
+  bool _agulhamentoCompleConcretoController = false;
+  bool _tiranteCentralCompleConcretoController = false;
 
   bool _saveData() {
     // Verifica os campos padrão para todos os tipos de estrutura
@@ -127,12 +124,11 @@ class EstruturaState extends State<Estrutura> {
           _largPerfilTerMetalicaController.text.isEmpty ||
           _espessPerfTerMetalicaController.text.isEmpty ||
           _perfEnrijecidoTerMetalicaController.text.isEmpty ||
-          _disPilaresCompleMetalicaController.text.isEmpty ||
-          _contraAvantamentoCompleMetalicaController.text.isEmpty ||
-          _agulhamentoCompleMetalicaController.text.isEmpty);
+          _disPilaresCompleMetalicaController.text.isEmpty);
     } else if (_nameEstruct == "Estrutura Madeira") {
       return !(_vaoLivreTesMadeiraController.text.isEmpty ||
           _tipoCorteTesMadeiraController.text.isEmpty ||
+          _altTesMadeiraController.text.isEmpty ||
           _altCorteTesMadeiraController.text.isEmpty ||
           _largCorteTesMadeiraController.text.isEmpty ||
           _diametroTroncoTesMadeiraController.text.isEmpty ||
@@ -145,10 +141,7 @@ class EstruturaState extends State<Estrutura> {
       return !(_vaoLivreTesConcretoController.text.isEmpty ||
           _tipoTravamentoTesConcretoController.text.isEmpty ||
           _disTerConcretoController.text.isEmpty ||
-          _tipoTerConcretoController.text.isEmpty ||
-          _contraAventamentoCompleConcretoController.text.isEmpty ||
-          _agulhamentoCompleConcretoController.text.isEmpty ||
-          _tiranteCentralCompleConcretoController.text.isEmpty);
+          _tipoTerConcretoController.text.isEmpty);
     }
 
     return false;
@@ -197,9 +190,8 @@ class EstruturaState extends State<Estrutura> {
           espessuraPerfilTer: _espessPerfTerMetalicaController.text,
           perfilEnrijecidoTer: _perfEnrijecidoTerMetalicaController.text,
           distanciaPilaresComple: _disPilaresCompleMetalicaController.text,
-          contraAvantamentoComple:
-              _contraAvantamentoCompleMetalicaController.text,
-          agulhamentoComple: _agulhamentoCompleMetalicaController.text,
+          contraAvantamentoComple: _contraAvantamentoCompleMetalicaController,
+          agulhamentoComple: _agulhamentoCompleMetalicaController,
         );
         objectSolicitacao = {
           "cliente": widget.cliente.toJson(),
@@ -216,6 +208,7 @@ class EstruturaState extends State<Estrutura> {
           idadeAparente: _idadeAparente.text,
           vaoLivreTesoura: _vaoLivreTesMadeiraController.text,
           tipoCorteTesoura: _tipoCorteTesMadeiraController.text,
+          alturaTesoura: _altTesMadeiraController.text,
           alturaCorteTesoura: _altCorteTesMadeiraController.text,
           larguraCorteTesoura: _largCorteTesMadeiraController.text,
           diametroTroncoTesoura: _diametroTroncoTesMadeiraController.text,
@@ -244,17 +237,15 @@ class EstruturaState extends State<Estrutura> {
           tipoTravamentoTesoura: _tipoTravamentoTesConcretoController.text,
           distanciaTer: _disTerConcretoController.text,
           tipoTer: _tipoTerConcretoController.text,
-          contraAventamentoComple:
-              _contraAventamentoCompleConcretoController.text,
-          agulhamentoComple: _agulhamentoCompleConcretoController.text,
-          tiranteCentralComple: _tiranteCentralCompleConcretoController.text,
+          contraAventamentoComple: _contraAventamentoCompleConcretoController,
+          agulhamentoComple: _agulhamentoCompleConcretoController,
+          tiranteCentralComple: _tiranteCentralCompleConcretoController,
         );
 
         objectSolicitacao = {
           "cliente": widget.cliente.toJson(),
           "tipo_estrutura": estruturaConcreto.toJson()["tipo_estrutura"],
-          "estrutura": estruturaConcreto.toJson()["estrutura"],
-          "solicitacao": {"id_usuario": 2}
+          "estrutura": estruturaConcreto.toJson()["estrutura"]
         };
         // Passe 'estruturaConcreto' para a próxima tela se necessário
       }
@@ -295,7 +286,8 @@ class EstruturaState extends State<Estrutura> {
                 Row(
                   children: <CustomTextLabelInput>[
                     CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller: _areaCobertura,
                         nameLabel: "Área de cobertura"),
                   ],
@@ -303,7 +295,8 @@ class EstruturaState extends State<Estrutura> {
                 Row(
                   children: <CustomTextLabelInput>[
                     CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller: _numeroModulos,
                         nameLabel: "Números de módulos"),
                   ],
@@ -311,7 +304,8 @@ class EstruturaState extends State<Estrutura> {
                 Row(
                   children: <CustomTextLabelInput>[
                     CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller: _idadeAparente,
                         nameLabel: "Idade aparente"),
                   ],
@@ -319,7 +313,8 @@ class EstruturaState extends State<Estrutura> {
                 Row(
                   children: <CustomTextLabelInput>[
                     CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller: _tipoTelha,
                         nameLabel: "Tipo de telha"),
                   ],
@@ -350,7 +345,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _vaoLivreTesMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Vão livre",
@@ -360,7 +356,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _tipoCorteTesMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Tipo de corte",
@@ -370,7 +367,19 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
+                        controller:
+                            _altTesMadeiraController, // Adicionei o controlador aqui
+                        nameLabel: "Altura da tesoura",
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <CustomTextLabelInput>[
+                      CustomTextLabelInput(
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _altCorteTesMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Altura do corte",
@@ -380,7 +389,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _largCorteTesMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Largura do corte",
@@ -390,7 +400,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _diametroTroncoTesMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Diâmetro do tronco",
@@ -419,7 +430,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _disTerMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Distâncias das terças",
@@ -429,7 +441,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _altCorteTerMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Altura do corte",
@@ -439,7 +452,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _largCorteTerMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Largura do corte",
@@ -468,7 +482,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _disPilaresCompleMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Distâncias entre pilares",
@@ -478,7 +493,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _formaChumbamentoCompleMadeiraController, // Adicionei o controlador aqui
                         nameLabel: "Forma de chumbamento",
@@ -514,7 +530,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _vaoLivreTesConcretoController, // Adicionei o controlador aqui
                         nameLabel: "Vão livre",
@@ -524,7 +541,7 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "Travamento lateral",
                         controller:
                             _tipoTravamentoTesConcretoController, // Adicionei o controlador aqui
                         nameLabel: "Tipo de travamento",
@@ -553,7 +570,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _disTerConcretoController, // Adicionei o controlador aqui
                         nameLabel: "Distâncias das terças",
@@ -563,7 +581,7 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "Terças metálicas",
                         controller:
                             _tipoTerConcretoController, // Adicionei o controlador aqui
                         nameLabel: "Tipo das terças",
@@ -590,32 +608,92 @@ class EstruturaState extends State<Estrutura> {
               child: Column(
                 children: [
                   Row(
-                    children: <CustomTextLabelInput>[
-                      CustomTextLabelInput(
-                        valorPadrao: "1,40",
-                        controller:
-                            _contraAventamentoCompleConcretoController, // Adicionei o controlador aqui
-                        nameLabel: "Possui contraventamento",
+                    children: <Widget>[
+                      const Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                "Possui contraventamento",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Checkbox(
+                        value: _contraAventamentoCompleConcretoController,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _contraAventamentoCompleConcretoController = value!;
+                          });
+                        },
                       ),
                     ],
                   ),
                   Row(
-                    children: <CustomTextLabelInput>[
-                      CustomTextLabelInput(
-                        valorPadrao: "1,40",
-                        controller:
-                            _agulhamentoCompleConcretoController, // Adicionei o controlador aqui
-                        nameLabel: "Possui agulhamento",
+                    children: <Widget>[
+                      const Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                "Possui agulhamento",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Checkbox(
+                        value: _agulhamentoCompleConcretoController,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _agulhamentoCompleConcretoController = value!;
+                          });
+                        },
                       ),
                     ],
                   ),
                   Row(
-                    children: <CustomTextLabelInput>[
-                      CustomTextLabelInput(
-                        valorPadrao: "1,40",
-                        controller:
-                            _tiranteCentralCompleConcretoController, // Adicionei o controlador aqui
-                        nameLabel: "Possui tirante central",
+                    children: <Widget>[
+                      const Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                "Possui tirante central",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Checkbox(
+                        value: _tiranteCentralCompleConcretoController,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _tiranteCentralCompleConcretoController = value!;
+                          });
+                        },
                       ),
                     ],
                   ),
@@ -649,7 +727,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _vaoLivreTesMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Vão livre",
@@ -659,7 +738,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _altTesMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Altura da tesoura",
@@ -669,7 +749,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _altPerfilTesMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Altura do perfil",
@@ -679,7 +760,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _largPerfilTesMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Largura do perfil",
@@ -689,7 +771,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _espessuraPerfilTesMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Espessura do perfil",
@@ -718,7 +801,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _disTerMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Distâncias das terças",
@@ -728,7 +812,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _altTerMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Altura das terças",
@@ -738,7 +823,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _largPerfilTerMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Largura do perfil",
@@ -748,7 +834,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _espessPerfTerMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Espessura do perfil",
@@ -758,7 +845,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _perfEnrijecidoTerMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Perfil enrijecido",
@@ -787,7 +875,8 @@ class EstruturaState extends State<Estrutura> {
                   Row(
                     children: <CustomTextLabelInput>[
                       CustomTextLabelInput(
-                        valorPadrao: "1,40",
+                        valorPadrao: "1.40",
+                        isNumber: true,
                         controller:
                             _disPilaresCompleMetalicaController, // Adicionei o controlador aqui
                         nameLabel: "Distâncias entre pilares",
@@ -795,22 +884,62 @@ class EstruturaState extends State<Estrutura> {
                     ],
                   ),
                   Row(
-                    children: <CustomTextLabelInput>[
-                      CustomTextLabelInput(
-                        valorPadrao: "1,40",
-                        controller:
-                            _contraAvantamentoCompleMetalicaController, // Adicionei o controlador aqui
-                        nameLabel: "Contraventamento",
+                    children: <Widget>[
+                      const Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                "Contraventamento",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Checkbox(
+                        value: _contraAvantamentoCompleMetalicaController,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _contraAvantamentoCompleMetalicaController = value!;
+                          });
+                        },
                       ),
                     ],
                   ),
                   Row(
-                    children: <CustomTextLabelInput>[
-                      CustomTextLabelInput(
-                        valorPadrao: "1,40",
-                        controller:
-                            _agulhamentoCompleMetalicaController, // Adicionei o controlador aqui
-                        nameLabel: "Agulhamento",
+                    children: <Widget>[
+                      const Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: Text(
+                                "Agulhamento",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Color.fromRGBO(255, 255, 255, 1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Checkbox(
+                        value: _agulhamentoCompleMetalicaController,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _agulhamentoCompleMetalicaController = value!;
+                          });
+                        },
                       ),
                     ],
                   ),
