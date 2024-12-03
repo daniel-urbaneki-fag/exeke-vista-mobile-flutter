@@ -43,10 +43,31 @@ class LoginState extends State<Login> {
       } else {
         print('Erro ao enviar dados. Código de status: ${response.statusCode}');
         print('Message: ${response.body}');
+        _showAlertDialog("${response.body}");
       }
     } catch (error) {
       print('Erro ao enviar dados: $error');
     }
+  }
+
+  void _showAlertDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Atenção"),
+          content: Text(message),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("OK"),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
