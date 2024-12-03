@@ -7,6 +7,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../config/api_routes.dart';
 import 'package:http/http.dart' as http;
 
+import 'package:exekevistaapp/pages/visualizar-solicitacoes.dart';
+
 class TirarFoto extends StatefulWidget {
   const TirarFoto({Key? key, required this.objectSolicitacaoFinal});
 
@@ -53,8 +55,12 @@ class TirarFotoState extends State<TirarFoto> {
       );
 
       if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        print('Dados enviados com sucesso! $data');
+        // final data = json.decode(response.body);
+        // print('Dados enviados com sucesso! ${data}');
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const VisualizarSolicitacoes()));
       } else {
         print('Erro ao enviar dados. Código de status: ${response.statusCode}');
         print('Message: ${response.body}');
@@ -63,7 +69,7 @@ class TirarFotoState extends State<TirarFoto> {
       print('Erro ao enviar dados: $error');
     }
 
-    print(_objectSolicitacaoFinal);
+    // print(_objectSolicitacaoFinal);
   }
 
   void openCamera() {
