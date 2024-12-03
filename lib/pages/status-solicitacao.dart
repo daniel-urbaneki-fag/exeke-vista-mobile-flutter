@@ -36,29 +36,6 @@ class StatusSolicitacaoState extends State<StatusSolicitacao> {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: <CustomTextLabelInput>[
-                        // CustomTextLabelInput(nameLabel: "Nome do cliente"),
-                      ],
-                    ),
-                    Row(
-                      children: <CustomTextLabelInput>[
-                        // CustomTextLabelInput(nameLabel: "Tipo de Estrutura"),
-                      ],
-                    ),
-                    Row(
-                      children: <CustomTextLabelInput>[
-                        // CustomTextLabelInput(nameLabel: "Situação da Análise"),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Container(
